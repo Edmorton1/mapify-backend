@@ -1,0 +1,23 @@
+{
+  "name": "mapify-backend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch ./src/index.ts",
+    "start": "bun ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edmorton1/mapify-backend.git"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "bugs": {
+    "url": "https://github.com/Edmorton1/mapify-backend/issues"
+  },
+  "homepage": "https://github.com/Edmorton1/mapify-backend#readme"
+}
