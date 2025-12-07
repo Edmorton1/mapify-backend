@@ -1,6 +1,6 @@
 import type {PoolConfig} from 'pg';
 import type {LoggerOptions} from 'pino';
-import {getEnv, NODE_ENV} from '../getEnv.js';
+import {getEnv, NODE_ENV} from '../../getEnv.js';
 
 export const PostgresConfig: PoolConfig = {
   database: getEnv('DB_NAME'),

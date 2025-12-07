@@ -1,6 +1,6 @@
 import {STATUS_CODES} from 'http';
-import Logger from '../connections';
 import {HttpError} from '../http.error';
+import Logger from '../src/connections';
 
 export function errorHandler(
   err: unknown,

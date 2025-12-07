@@ -20,14 +20,24 @@ module.exports = {
   async registrationController(req, res) {
     const authDto = zodValidateFormData(req, 'avatar', RegistrationDtoSchema);
 
-    logger.debug({REQUEST_REGISTRATION: {...authDto, avatar: {...authDto.avatar, buffer: undefined}}});
+    logger.debug({
+      REQUEST_REGISTRATION: {
+        ...authDto,
+        avatar: {...authDto.avatar, buffer: undefined}
+      }
+    });
 
     const provider = req.session.provider;
     delete req.session.provider;
 
     const {user: userDto, profile: profileDto, avatar} = authDto;
 
-    const profile = await registrationService({userDto, profileDto, avatar, provider});
+    const profile = await registrationService({
+      userDto,
+      profileDto,
+      avatar,
+      provider
+    });
 
     logger.debug({RESPONSE_REGISTRATION: profile});
 

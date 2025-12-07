@@ -1,8 +1,9 @@
+import {PATHS} from '@mapify/shared';
 import {Hono} from 'hono';
-import z from 'zod';
-import {connect} from '../connections';
-import zFormValidator from '../validators/zFormValidator';
-import zJsonValidator from '../validators/zJsonValidator';
+import {connect} from './connections';
+import {router} from './routes';
+
+console.log(PATHS);
 
 connect();
 
@@ -10,40 +11,42 @@ const app = new Hono();
 
 app.get('/', (c) => c.text('Hono!'));
 
-app.post('/jun', async (c) => {
-  // const body = await c.req.json();
-  // console.log(body);
+app.route('/', router);
 
-  const file = await c.req.parseBody();
-  const mista = file.mista as File;
-  const jabba = file.jabba;
-  console.log(await mista.arrayBuffer(), jabba);
+// app.post('/jun', async (c) => {
+//   // const body = await c.req.json();
+//   // console.log(body);
 
-  c.json('asd');
-});
+//   const file = await c.req.parseBody();
+//   const mista = file.mista as File;
+//   const jabba = file.jabba;
+//   console.log(await mista.arrayBuffer(), jabba);
 
-const userSchema2 = z.object({
-  name: z.string(),
-  password: z.string()
-});
+//   c.json('asd');
+// });
 
-app.post('/validator', zJsonValidator(userSchema2), async (c) => {
-  const user = await c.req.valid('json');
-  console.log(user);
-  return c.json(user);
-});
+// const userSchema2 = z.object({
+//   name: z.string(),
+//   password: z.string()
+// });
 
-const userSchema = z.object({
-  name: z.string(),
-  password: z.string(),
-  avatar: z.file(),
-  hhdf: z.file()
-});
+// app.post('/validator', zJsonValidator(userSchema2), async (c) => {
+//   const user = await c.req.valid('json');
+//   console.log(user);
+//   return c.json(user);
+// });
 
-app.post('/test', zFormValidator(userSchema), async (c) => {
-  const user = await c.req.valid('form');
-  console.log(user);
-  return c.json(user);
-});
+// const userSchema = z.object({
+//   name: z.string(),
+//   password: z.string(),
+//   avatar: z.file(),
+//   hhdf: z.file()
+// });
+
+// app.post('/test', zFormValidator(userSchema), async (c) => {
+//   const user = await c.req.valid('form');
+//   console.log(user);
+//   return c.json(user);
+// });
 
 export default app;

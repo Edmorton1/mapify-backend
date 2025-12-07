@@ -1,4 +1,4 @@
-const {getEnv} = require('../../getEnv');
+const {getEnv} = require('../../../getEnv');
 const {logger} = require('../../connections');
 
 module.exports = {

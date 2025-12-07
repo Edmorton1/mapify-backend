@@ -41,17 +41,26 @@ async function createUser(trx, userDto) {
 
 module.exports = {
   async registrationEmail({userDto, profileDto, avatar}) {
-    return registration({profileDto, avatar, createUserFunc: (trx) => createUser(trx, userDto)});
+    return registration({
+      profileDto,
+      avatar,
+      createUserFunc: (trx) => createUser(trx, userDto)
+    });
   },
 
   async registrationProvider(profileDto, provider) {
-    return registration(profileDto, (trx) => insertUser(trx, {provider_id: provider.id, email: provider.email}));
+    return registration(profileDto, (trx) =>
+      insertUser(trx, {provider_id: provider.id, email: provider.email})
+    );
   },
 
   async isInDB(table, column, value) {
     const {
       rows: [{exists}]
-    } = await pg.raw(`SELECT EXISTS(SELECT 1 FROM ?? WHERE ?? = ?) AS "exists"`, [table, column, value]);
+    } = await pg.raw(
+      `SELECT EXISTS(SELECT 1 FROM ?? WHERE ?? = ?) AS "exists"`,
+      [table, column, value]
+    );
 
     return exists;
   }
