@@ -1,8 +1,7 @@
 import {Logger} from '@connections';
+import router from '@router';
 import {LoginDtoZodSchema} from '../../../shared/models/schemas/auth';
 import {zodValidateSchema} from '../../pipes';
-
-import router from '../router';
 import {loginService} from './login.service';
 
 router.post();

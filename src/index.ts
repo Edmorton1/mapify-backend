@@ -1,7 +1,7 @@
 import {PATHS} from '@mapify/shared';
+import router from '@router';
 import {Hono} from 'hono';
 import {connect} from './connections';
-import {router} from './routes';
 
 console.log(PATHS);
 
